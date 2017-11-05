@@ -103,7 +103,7 @@ function getUnitValues (opts) {
  */
 
 function getUnitKey (unit) {
-  for (var key of Object.keys(UNIT_MAP)) {
+  for (var key in UNIT_MAP) {
     if (UNIT_MAP[key].indexOf(unit) > -1) {
       return key
     }
