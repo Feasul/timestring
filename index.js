@@ -12,7 +12,7 @@ module.exports = parseTimestring
  * @type {Object}
  */
 
-const DEFAULT_OPTS = {
+var DEFAULT_OPTS = {
   hoursPerDay: 24,
   daysPerWeek: 7,
   weeksPerMonth: 4,
@@ -26,7 +26,7 @@ const DEFAULT_OPTS = {
  * @type {Object}
  */
 
-const UNIT_MAP = {
+var UNIT_MAP = {
   ms: ['ms', 'milli', 'millisecond', 'milliseconds'],
   s: ['s', 'sec', 'secs', 'second', 'seconds'],
   m: ['m', 'min', 'mins', 'minute', 'minutes'],
@@ -49,17 +49,17 @@ const UNIT_MAP = {
 function parseTimestring (string, returnUnit, opts) {
   opts = Object.assign({}, DEFAULT_OPTS, opts || {})
 
-  let totalSeconds = 0
-  let unitValues = getUnitValues(opts)
-  let groups = string
+  var totalSeconds = 0
+  var unitValues = getUnitValues(opts)
+  var groups = string
     .toLowerCase()
     .replace(/[^.\w+-]+/g, '')
     .match(/[-+]?[0-9]+[a-z]+/g)
 
   if (groups !== null) {
-    groups.forEach(group => {
-      let value = group.match(/[0-9]+/g)[0]
-      let unit = group.match(/[a-z]+/g)[0]
+    groups.forEach(function(group) {
+      var value = group.match(/[0-9]+/g)[0]
+      var unit = group.match(/[a-z]+/g)[0]
 
       totalSeconds += getSeconds(value, unit, unitValues)
     })
@@ -80,7 +80,7 @@ function parseTimestring (string, returnUnit, opts) {
  */
 
 function getUnitValues (opts) {
-  let unitValues = {
+  var unitValues = {
     ms: 0.001,
     s: 1,
     m: 60,
@@ -103,7 +103,7 @@ function getUnitValues (opts) {
  */
 
 function getUnitKey (unit) {
-  for (let key of Object.keys(UNIT_MAP)) {
+  for (var key of Object.keys(UNIT_MAP)) {
     if (UNIT_MAP[key].indexOf(unit) > -1) {
       return key
     }
