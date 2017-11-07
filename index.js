@@ -109,7 +109,7 @@ function getUnitKey (unit) {
     }
   }
 
-  throw new Error(`The unit [${unit}] is not supported by timestring`)
+  throw new Error('The unit [' + unit + '] is not supported by timestring')
 }
 
 /**
